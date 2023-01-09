@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>selector</title>
+    <script>
+      window.onload = function () {
+        const idDom = document.getElementById('id');
+        console.log('1', idDom);
+
+        function onPrintIdDom() {
+          const idDom = document.getElementById('id');
+          console.log('2', idDom);
+        }
+
+        onPrintIdDom(); // <div id="id">ID</div>
+        // 단, 이벤트를 실행 시에 실행하는 함수는 이미 html이 로드되어있는 상태이기 때문에
+        // 위에 선언해도 사용가능
+      };
+    </script>
+  </head>
+  <body>
+    <div name="byName" id="id">ID</div>
+    <div name="byName2" class="class">CLASS</div>
+  </body>
+  <script>
+    const idDom = document.getElementById('id');
+    const idSelector = document.querySelector('#id');
+    console.log('getElementById', idDom);
+    // <div id="id">ID</div>
+    console.log('querySelector', idSelector);
+    // <div id="id">ID</div>
+
+    const classDom = document.getElementsByClassName('class');
+    console.log('getElementsByClassName', classDom);
+    // HTMLCollection(1)
+    //  0: div.class
+    //  length: 1
+    //  [Prototype]: HTMLCollection
+    const classSelector = document.querySelector('.class');
+    console.log('querySelector', classSelector);
+    // <div class="class">CLASS<div>
+    const classSelectorAll = document.querySelectorAll('.class');
+    console.log('querySelectorAll', classSelectorAll);
+    // NodeList(1)
+    //  0: div.class
+    //  length : 1
+    //  [Prototype]: NodeList
+
+    const TagName = document.getElementsByTagName('div');
+    console.log('getElementsByTagName', TagName);
+    // HTMLCollection(2)
+    // 0: div#id
+    // 1: div.class
+    // id: div#id
+    // length: 2
+    // [Prototype]: HTMLCollection
+
+    const byName = document.getElementsByName('byName');
+    console.log('getElementsByNmae', byName);
+    // NodeList [div#id]
+    // 0: div#id
+    // length: 1
+    // [Prototype] : NodeList
+
+    const byName2 = document.getElementsByName('byName2');
+    console.log('getElementsByNmae2', byName2);
+    // NodeList [div.class]
+    // 0: div.class
+    // length: 1
+    // [Prototype]: NodeList
+  </script>
+</html>
+
+<!-- 
+document.getElementById('id')
+document.getElementsByClassName('menu-item')
+document.querySelector('#menu')
+document.querySelector('.menu-item');
+document.querySelectorAll('.menu-item') => NodeList [배열]
+document.getElementsByTagName();        => HTMLCollectioN(2)
+documen.getElementsByName();            => NodeList [배열]
+-->
