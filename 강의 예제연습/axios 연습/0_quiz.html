@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+    <script>
+      // "?"속성명"="속성값"&"속성명2=속성2값
+      // ?,=,&
+
+      // location(현재 인터넷 창의 url을 나타내는 객체).search(url에 붙은 쿼리값을 가지고 옴. ex) ?postId=3 )
+      console.log(location.search); // string
+      const params = new URLSearchParams(location.search); // 검색하기 쉽도록 urlsearchparam 인스턴스로 변환
+      console.log(params.get('postId')); // 1              // 검색해서 찾아올 수 있으며
+      // 이터러블이기 때문에 for of 사용 가능
+      for (const param of params) {
+        console.log(param); // (2) ['postId', '1'] (2) ['color', 'red']  // 반환 값은 배열
+      }
+    </script>
+  </head>
+  <body>
+    <!--
+        /posts를 활용하여 10개의 데이터만 가지고 온후
+        화면에 제목과 타이틀을 표기
+
+        제목을 누르면 post.html로 이동하고
+        주소로 데이터를 전달하여
+        선택한 해당 post의 상세 페이지를 post.html로 구현
+
+        심화*
+        댓글 창도 같이 구현
+    -->
+    <table>
+      <tr>
+        <th>제목</th>
+        <th>내용</th>
+      </tr>
+      <!-- 추가될 테이터<tr></tr> -->
+    </table>
+
+    <!-- <div onclick="loadPostsApi()">제목</div>
+    <h2>타이틀</h2> -->
+    <script>
+      const $table = document.querySelector('table');
+      const BACKEND_URL = 'https://jsonplaceholder.typicode.com';
+      axios.get(BACKEND_URL + '/posts').then((res) => {
+        console.log(res);
+        const ten_arr = res.data.slice(0, 10); // 여기서 res는 object!
+        for (const post of ten_arr) {
+          // 전체 다 순회해야하니까 for of문 사용
+          /*
+          <tr>
+            <td>제목</td>
+            <td>내용</td>
+          </tr>
+          */
+
+          const tr = document.createElement('tr'); // 비어있는 tr태그 만든후
+          // 백쿼트 써서 태그 내용 추가해줌 // post.title & post.body 에서 title과 body는 데브툴스 열어보면 키값으로 다 나와있음.
+          tr.innerHTML = `
+            <td><a href=./post.html?postId=${post.id}>${post.title}</a></td>
+            <td>${post.body}</td>
+          `; // a 태그로 페이지 이동 설정해줌. ${post.id}가 고유번호를 의미(데브툴스 확인)
+
+          $table.append(tr); // 테이블 돔변수에 for문을 돌면서 생성된 tr 10개를 맨 뒤 위치에 추가해줌.
+        }
+        // 여기까지 아래 기능들을 구현한 것
+        // /posts를 활용하여 10개의 데이터만 가지고 온후
+        // 화면에 제목과 타이틀을 표기
+      });
+    </script>
+  </body>
+</html>
