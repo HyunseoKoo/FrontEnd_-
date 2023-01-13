@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ShadeBanner</title>
+    <style>
+      /* 전역 */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* 공통 */
+      .flex-center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* 배너 */
+      .banner-box {
+        width: 800px;
+        height: auto;
+        border: 1px solid #000;
+        margin: 1rem auto;
+        overflow: hidden;
+      }
+
+      .banner-item {
+        min-width: 100%;
+        height: 500px;
+        background-image: url(./스누피이미지/2.jpg);
+        background-size: contain;
+      }
+      .banner-list > li:nth-of-type(2) {
+        background-image: url(./스누피이미지/3.jpg);
+      }
+
+      .banner-list > li:nth-of-type(3) {
+        background-image: url(./스누피이미지/15.jpg);
+      }
+
+      /* shade */
+      #shade-banner > ul {
+        width: 100%;
+        height: 1000px;
+        position: relative;
+      }
+      #shade-banner > ul > li {
+        position: absolute;
+        transition: opacity 2s;
+      }
+
+      #shade-banner > ul > li:nth-of-type(1) {
+        z-index: 300;
+      }
+
+      #shade-banner > ul > li:nth-of-type(2) {
+        z-index: 200;
+      }
+
+      #shade-banner > ul > li:nth-of-type(3) {
+        z-index: 100;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>내가 좋아하는 스누피 배너💕</h2>
+    <div id="shade-banner" class="banner-box">
+      <ul class="banner-list">
+        <li class="banner-item flex-center"></li>
+        <li class="banner-item flex-center"></li>
+        <li class="banner-item flex-center"></li>
+      </ul>
+      <div>
+        <button class="shade-prev-btn">prev</button>
+        <button class="shade-next-btn">next</button>
+      </div>
+    </div>
+    <script>
+      let shadeBannerIndex = 0;
+      const $shadeBanner = document.querySelectorAll('.banner-item'); // NodeList [li] 태그들
+      const $shadePrevBtn = document.querySelector('.shade-prev-btn');
+      const $shadeNextBtn = document.querySelector('.shade-next-btn');
+
+      // 이전 배너로 넘어가는 기능의 함수
+      function prevShadeBanner() {
+        if (shadeBannerIndex <= 0) {
+          // shadeBanner인덱스가 0보다 작을 경우
+          shadeBannerIndex = $shadeBanner.length - 1; // shadeBanner인덱스를 li배열의 마지막 요소 인덱스로 재할당
+        } else {
+          shadeBannerIndex--; // li태그의 인덱스가 1이상인 경우 인덱스가 하나 작아지게 지정
+        }
+        for (let item of $shadeBanner) {
+          // $shadeBanner(li 배열)의 모든 요소 투명도 0 지정
+          item.style.opacity = 0;
+        }
+        $shadeBanner[shadeBannerIndex].style.opacity = 1; // 변경된 li의 투명도를 1로 지정(나머지 li요소들은 투명도 0으로 안보이지만, 해당 li는 1로 세팅하여 해당요소만 보이게 됨)
+      }
+
+      // 다음 배너로 넘아가는 기능의 함수
+      function nextShadeBanner() {
+        if ($shadeBanner.length - 1 == shadeBannerIndex) {
+          shadeBannerIndex = 0;
+        } else {
+          shadeBannerIndex++;
+        }
+        $shadeBanner.forEach((el, index, arr) => {
+          el.style.opacity = 0;
+        });
+        $shadeBanner[shadeBannerIndex].style.opacity = 1;
+      }
+
+      $shadePrevBtn.addEventListener('click', prevShadeBanner);
+      $shadeNextBtn.addEventListener('click', nextShadeBanner);
+    </script>
+  </body>
+</html>
