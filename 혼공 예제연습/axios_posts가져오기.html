@@ -1,0 +1,60 @@
+<!-- 
+  /posts를 활용하여 10개의 데이터만 가지고 온후
+  화면에 제목과 타이틀을 표기
+
+  제목을 누르면 post.html로 이동
+  주소로 데이터를 전달해서
+  선택한 해당 post의 상세 페이지를 post.html로 구현
+
+  심화*
+  댓글 창도 같이 구현
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>axios_posts가져오기</title>
+    <!-- <script>
+      console.log(location.search); // location.search = URL에 붙은 쿼리 값을 가지고 옵니다. ?postId=3(get방식으로 데이터를 백엔드에 보낼때, 데이터전달&히스토리를 남기기 위해서 사용)
+      const params = new URLSearchParams(location.search); // location.search(쿼리값)를 객체로 변환
+      console.log(params.get('postId')); // params 객체에서 postId값을 조회 (출력값? 해당 postId값 ex. 3)
+      for (const param of params) {
+        // 이터러블(객체)이기 때문에 for of 사용
+        console.log(param); //  => 반환값을 배열화 함. ex. (2) ['postId', '1'] (2) ['color', 'red']
+      }
+    </script> -->
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>제목</th>
+        <th>내용</th>
+      </tr>
+    </table>
+
+    <script>
+      const $table = document.querySelector('table');
+      const BACKEND_URL = 'https://jsonplaceholder.typicode.com';
+      axios.get(BACKEND_URL + '/posts').then((res) => {
+        console.log(res.data); // Object
+
+        const ten_arr = res.data.slice(0, 10);
+        //  /posts를 활용하여 10개의 데이터만 가져오기
+
+        for (const post of ten_arr) {
+          // post(변수명(?))는 ten_arr(배열)의 각각의 객체(10개)
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+        <td><a href='./post.html?postId=${post.id}'>${post.title}</a></td>
+        <td>${post.body}</td>`;
+          $table.append(tr);
+        }
+        // 화면에 제목과 타이틀을 표기
+      });
+    </script>
+  </body>
+</html>

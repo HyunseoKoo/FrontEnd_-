@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ShadeBanner</title>
+    <style>
+      /* 전역 */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* 공통 */
+      .flex-center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* 배너 */
+      .banner-box {
+        width: 800px;
+        height: auto;
+        border: 1px solid #000;
+        margin: 1rem auto;
+        overflow: hidden;
+      }
+
+      .banner-item {
+        min-width: 100%;
+        height: 500px;
+        background-image: url(./스누피이미지/2.jpg);
+      }
+
+      .banner-list > li:nth-of-type(2) {
+        background-image: url(./스누피이미지/3.jpg);
+      }
+
+      .banner-list > li:nth-of-type(3) {
+        background-image: url(./스누피이미지/15.jpg);
+      }
+
+      /* slide */
+      .banner-box > ul {
+        width: 100%;
+        display: flex;
+        transition: transform 2s ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>내가 좋아하는 스누피 배너💕</h2>
+    <div id="slide-banner" class="banner-box">
+      <ul class="banner-list">
+        <li class="banner-item flex-center"></li>
+        <li class="banner-item flex-center"></li>
+        <li class="banner-item flex-center"></li>
+      </ul>
+      <div>
+        <button class="slide-prev-btn">prev</button>
+        <button class="slide-next-btn">next</button>
+      </div>
+    </div>
+    <script>
+      let slideBannerIndex = 0;
+      const $slideBanner = document.querySelector('.banner-list');
+      const $slideBannerItem = document.querySelectorAll('.banner-item'); // NodeList [li] 태그들
+      const $shadeNextBtn = document.querySelector('.slide-next-btn');
+    </script>
+  </body>
+</html>
