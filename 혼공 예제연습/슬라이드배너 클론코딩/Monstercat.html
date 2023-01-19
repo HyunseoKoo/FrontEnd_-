@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 폰트어썸 -->
+    <script src="https://kit.fontawesome.com/d1c72c4e39.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="./Monstercat.css" />
+  </head>
+  <body>
+    <header class="flex">
+      <div id="logo">
+        <img src="https://cdn.monstercat.com/monstercat-logo.webp" alt="" />
+      </div>
+      <div id="side">
+        <div><i class="fa-solid fa-bars"></i></div>
+        <div><i class="fab fa-fw fa-instagram"></i></div>
+        <div><i class="fab fa-fw fa-tiktok"></i></div>
+        <div><i class="fab fa-fw fa-twitter"></i></div>
+        <div><i class="fab fa-fw fa-twitch"></i></div>
+        <div><i class="fab fa-fw fa-facebook"></i></div>
+        <div><i class="fab fa-fw fa-discord"></i></div>
+      </div>
+    </header>
+    <main>
+      <div id="section1">
+        <div>MONSTERCAT</div>
+        <div>MUSIC</div>
+      </div>
+      <div id="section2" height="1200px">
+        <div class="flex banner_box" height="1200px">
+          <ul id="" class="slide_banner flex">
+            <li id="box" class="banner_box" width="1000px">
+              <img
+                src="https://cdx.monstercat.com/resized/338f5fc096774e3cd82ec8cd671ff2d0f49fe3ed/512.webp"
+              />
+            </li>
+            <li id="box" class="banner_box">
+              <img
+                src="https://cdx.monstercat.com/resized/239e3052ea7b4fa96a8c7532cc5b116842972801/512.webp"
+                width="1000px"
+              />
+            </li>
+            <li id="box" class="banner_box">
+              <img
+                src="https://cdx.monstercat.com/resized/508f80d10b4a392610f55ab66da6d1b1d8a3d8a4/512.webp"
+                width="1000px"
+              />
+            </li>
+            <li id="box" class="banner_box">
+              <img
+                src="https://cdx.monstercat.com/resized/2ccc2dae28442bee0f4cf0bcbe91a0d69c6a20cc/512.webp"
+                width="1000px"
+              />
+            </li>
+            <li id="box" class="banner_box">
+              <img
+                src="https://cdx.monstercat.com/resized/6ebe9b9b1775385c431cffdeecb7af4f018e6e83/512.webp"
+                width="1000px"
+              />
+            </li>
+          </ul>
+          <div id="index" class="flex">
+            <button class="FirstBtn">first</button>
+            <div class="btn1" onClick="moveToButton(this)"></div>
+            <div class="btn2" onClick="moveToButton(this)"></div>
+            <div class="btn3" onClick="moveToButton(this)"></div>
+            <div class="btn4" onClick="moveToButton(this)"></div>
+            <div class="btn5" onClick="moveToButton(this)"></div>
+            <button class="LastBtn">last</button>
+          </div>
+        </div>
+      </div>
+      <div id="section3" class="flex">
+        <div>
+          <div>LATEST RELEASES</div>
+          <div>EXPLORE IN THE <span>PLAYER</span></div>
+        </div>
+        <div class="flex">
+          <div class="flex">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+          <div class="flex">
+            <i class="fa-solid fa-filter"></i>
+            <div>FILTERS</div>
+          </div>
+          <div class="flex">
+            <i class="fa-solid fa-arrow-down-wide-short"></i>
+            <div>DESC.</div>
+          </div>
+        </div>
+      </div>
+      <div id="section4">
+        <!-- 받아와야 하는 데이터 -->
+      </div>
+      <div id="section5">
+        <div><i class="fa-solid fa-angles-left"></i></div>
+        <div><i class="fa-solid fa-angle-left"></i></div>
+        <div>PREV</div>
+        <div>1</div>
+        <div>NEXT</div>
+        <div><i class="fa-solid fa-angles-right"></i></div>
+        <div><i class="fa-solid fa-angle-right"></i></div>
+      </div>
+      <div id="section6">
+        <div>OUR BRANDS</div>
+        <div>
+          <div>IMG</div>
+          <div>
+            Unbound, Unlimited, Uncaged! Monstercat's original brand breaks the barriers of
+            expectations, exploring heavy-hitting, bass-fueled sounds from talented artists across
+            the sonic spectrum of dubstep, drum & bass, trap, breaks, and more.
+          </div>
+        </div>
+        <div>
+          <div>IMG</div>
+          <div>
+            For songs that capture the deeper connection between contemporary experience and shared
+            journeys, Monstercat Instinct explores vibrant and melodic music rooted in house, pop,
+            indie dance, and more.
+          </div>
+        </div>
+        <div>
+          <div>IMG</div>
+          <div>
+            Monstercat Silk is distinguished by its emotive and introspective qualities that have
+            the ability to turn ‘emotions into sound,' providing the most poignant releases in
+            progressive & deep house, chillout, trance, ambient, and more.
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div>
+        <div>
+          <div>ABOUT MONSTERCAT</div>
+          <div>CONTACT US</div>
+          <div>CAREERS</div>
+          <div>NEWS</div>
+          <div>PRESS</div>
+        </div>
+        <div>
+          <div>TERMS OF SERVICE</div>
+          <div>PRIVACY POLICY</div>
+        </div>
+        <div>
+          <div>MONSTERCAT NEWS</div>
+          <div>Don't miss a thing, stay up to date with the latest news from us.</div>
+          <div>
+            <input type="text" placeholder="Enter email" />
+            <button><i class="fa-solid fa-right-long"></i></button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <div>2011 - 2023 © Monstercat, All Rights Reserved</div>
+          <div>
+            <div></div>
+            <div><i class="fab fa-fw fa-instagram"></i></div>
+            <div><i class="fab fa-fw fa-tiktok"></i></div>
+            <div><i class="fab fa-fw fa-twitter"></i></div>
+            <div><i class="fab fa-fw fa-twitch"></i></div>
+            <div><i class="fab fa-fw fa-facebook"></i></div>
+            <div><i class="fab fa-fw fa-discord"></i></div>
+          </div>
+        </div>
+        <div>
+          <div>
+            We acknowledge with gratitude the traditional, ancestral and unceded land of the Coast
+            Salish peoples, including the territories of the Sḵwx̱wú7mesh (Squamish), Stó:lō and
+            Səl̓ílwəta/Selilwitulh (Tsleil-Waututh) and xʷməθkʷəy̓əm (Musqueam) Nations, on which
+            Monstercat's Vancouver HQ stands.
+          </div>
+          <div>
+            We acknowledge the unceded and ancestral territories of the Gabrielino/Tongva peoples on
+            which our LA team live and work.
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+      // 1. 변수 설정
+      let slidebannerIndex = 0;
+      const $slidebanner = document.querySelector('.slide_banner');
+      const $slidebannerItem = document.querySelectorAll('.slide_banner > li');
+      const $slidebannerWidth = $slidebanner.offsetWidth; // 길이 (701)
+
+      const $FirstButton = document.querySelector('.FirstBtn');
+      const $LastButton = document.querySelector('.LastBtn');
+
+      // 2. 슬라이드 배너 구현
+      function nextSlideBanner() {
+        if (slidebannerIndex >= $slidebannerItem.length - 1) {
+          slidebannerIndex = 0;
+        } else {
+          slidebannerIndex++;
+        }
+        $slidebanner.style.transform = `translateX(-${$slidebannerWidth * slidebannerIndex}px)`;
+      }
+
+      // 3. 자동 슬라이드
+      setInterval(nextSlideBanner, 3000);
+
+      /* 4. 함수설계) 버튼 클릭시 해당 인덱스 슬라이드로 이동
+      //    1) 특정버튼을 클릭하면 버튼 인덱스가 클릭한 버튼의 해당 인덱스로 변경
+      //    2) 변경된 해당 인덱스의 요소로 슬라이드 이동*/
+
+      /*this기능 활용 -> 클릭된 요소의 인덱스 불러오기 (어떻게?)
+        구글링 : this 타겟 인덱스 불러오기
+        e.target => 이벤트가 발생한 요소를 반환해줌. */
+      moveToButton((e) => {
+        const selectedSlidebannerIndex = e.target.index;
+        // slidebannerIndex = e.target.index;
+
+        $slidebanner.style.transform = `translateX(-${
+          $slidebannerWidth * (slidebannerIndex - selectedSlidebannerIndex)
+        }px)`;
+      });
+
+      // 5. 맨 처음 & 맨 마지막 페이지로 이동
+      /* 함수설계
+        1) first 버튼 클릭하면 페이지 li배열의 첫번째 인덱스로 이동하고 보여줌
+        2) last 버튼 클릭시 마지막 인덱스로 이동, 보여줌
+      */
+      function showFirstPage() {
+        slidebannerIndex = 0;
+        $slidebanner.style.transform = `translateX(-${$slidebannerWidth * slidebannerIndex}px)`;
+      }
+
+      function showLastPage() {
+        slidebannerIndex = $slidebannerItem.length - 1;
+        $slidebanner.style.transform = `translateX(-${$slidebannerWidth * slidebannerIndex}px)`;
+      }
+
+      $FirstButton.addEventListener('click', showFirstPage);
+      $LastButton.addEventListener('click', showLastPage);
+    </script>
+  </body>
+</html>

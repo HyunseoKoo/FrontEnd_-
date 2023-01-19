@@ -1,0 +1,129 @@
+@font-face {
+  font-family: monument;
+  src: url(./assets/font/monumentextended-freeforpersonaluse/MonumentExtended-FreeForPersonalUse/MonumentExtended-Regular.otf);
+}
+
+@font-face {
+  font-family: monsterrat;
+  src: url(./assets/font/Montserrat/static/Montserrat-Medium.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+/* body */
+body {
+  background-color: #141112;
+}
+
+/* header */
+
+.flex {
+  display: flex;
+}
+
+header {
+  justify-content: space-between;
+  /* position: fixed; */
+}
+
+header > #side > div > i {
+  color: #f1f1f1;
+}
+
+#logo > img {
+  width: 50px;
+  height: 50px;
+}
+
+/* main */
+
+main {
+  font-family: monument;
+  width: 80%;
+  margin: 0 auto;
+  color: #f1f1f1;
+}
+
+.banner_box {
+  overflow: hidden;
+}
+
+/* main > #section1 */
+
+main > #section1 {
+  font-size: 4rem;
+}
+
+main > #section1 > div:first-child {
+  color: #141112;
+  -webkit-text-stroke: 2px #f1f1f1;
+}
+
+/* main > #section2 */
+
+main > #section2 > div:first-child {
+  font-size: 2.5rem;
+  margin: 80px 0 30px 0;
+}
+
+main > #section2 > div:last-child {
+  flex-direction: column;
+}
+
+main #box {
+  border: 1px solid;
+  width: 100%;
+  height: 60vh;
+}
+
+main #index {
+  justify-content: center;
+  margin: 30px 0;
+}
+
+main #index > div {
+  width: 80px;
+  height: 10px;
+  margin: 0 5px;
+  border: 1px solid #f1f1f1;
+}
+
+/* main > #section3 */
+
+main > #section3 {
+  justify-content: space-between;
+}
+
+main > #section3 > div:first-child {
+  font-size: 2.5rem;
+}
+
+main > #section3 > div:first-child > div:last-child {
+  font-size: 1rem;
+  font-family: monsterrat;
+}
+
+main > #section3 > div:first-child > div:last-child > span {
+  font-family: monument;
+}
+
+main > #section3 > div:last-child {
+}
+
+main > #section3 > div:last-child > div {
+  border: 1px solid #f1f1f1;
+  align-items: center;
+}
+
+/* footer */
+
+footer {
+  width: 80%;
+  margin: 0 auto;
+}
