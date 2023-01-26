@@ -35,6 +35,19 @@
       #te_input {
         width: 600;
       }
+
+      .clicked {
+        background-color: pink;
+        color: orange;
+      }
+
+      .transparent {
+        color: #fff;
+      }
+
+      .fontColor {
+        color: #000;
+      }
     </style>
     <!-- 1번 -->
     <script>
@@ -55,7 +68,7 @@
 
       <p>2.탭을 선택하면 선택한 탭의 배경과 글자의색이 바뀌도록 하시오</p>
       <div class="tab_host">
-        <div class="tab" onClick="clickedTab(this)">탭1</div>
+        <div class="tab">탭1</div>
         <div class="tab">탭2</div>
         <div class="tab">탭3</div>
         <div class="tab">탭4</div>
@@ -67,14 +80,21 @@
         <div class="block">탭1 컨텐츠</div>
         <div class="block">탭3 컨텐츠</div>
         <div class="block">탭2 컨텐츠</div>
-        <div class="block">탭5 컨텐츠</div>
         <div class="block">탭4 컨텐츠</div>
+        <div class="block">탭5 컨텐츠</div>
       </div>
       <p>
         4. 아래의 입력창에 숫자가 입력되지 않도록 하고 길이 제한은 10자로 하시오. <br />숫자가
         입력된다면 숫자가 입력되었다고 alert로 알려주시오
       </p>
-      <input type="text" id="te_input" maxlength="9" placeholder="글자만 입력하세요." />
+      <input
+        type="text"
+        id="te_input"
+        maxlength="10"
+        placeholder="글자만 입력하세요."
+        onkeyup="notNumber(this)"
+        onkeydown="notNumber(this)"
+      />
 
       <p>
         5.아래의 입력창에 입력 후 저장 버튼을 누르거나 엔터키를 누르면 입력한 내용이 아래의 list에
@@ -84,7 +104,7 @@
       <form id="form">
         <input type="text" value="" width="600" id="list_data" name="content" />
         <button type="submit" id="send" value="show_view">저장</button>
-        <button onclick="reset_list()" type="reset">초기화</button>
+        <button onclick="reset_list()" type="reset" id="reset">초기화</button>
         <p>리스트</p>
         <ul id="list">
           <li class="liclass">list</li>
@@ -94,19 +114,165 @@
     </div>
     <script>
       // 2번) div 탭을 선택하면 선택한 탭의 배경과 글자의색이 바뀌도록 하시오
-      const $tab_host = document.querySelector('.tab_host');
+      /* 함수설계
+        [input] 클릭한 탭에 적용될 배경/글자 색상 css속성
+        [output] 클릭한 탭에만 해당 css속성이 적용된다
+        1. 이미 해당 탭(e.target)이 클릭되어있거나 다른 탭이 클릭돼서 css속성이 적용되어 있을 경우, 속성 삭제
+        2. 해당 탭에 css속성 적용
+        3. 모든 탭이 클릭되면 1&2번 기능이 적용되게 하는 함수 실행
+        */
+
       const $tab = document.querySelectorAll('.tab');
-      console.log($tab); // NodeList(5) [div.tab,..,div.tab]
 
-      function findNode(nodes, tag) {
-        let find;
+      function changeTab(e) {
+        console.log('this', e.target);
+        console.log('classList', e.target.classList);
+
+        if (e.target.classList[1] === 'clicked') {
+          e.target.classList.remove('clicked');
+        } else {
+          for (i = 0; i < $tab.length; i++) {
+            $tab[i].classList.remove('clicked');
+          }
+          e.target.classList.add('clicked');
+        }
       }
 
-      //$tap(배열) 중 클릭한 요소의 인덱스 어떻게 가져오지?  e[index]..?
-      function clickedTab(e) {
-        const node = findNode(e.parentNode.children);
-        node.style.backgroundColor;
+      function operate() {
+        for (i = 0; i < $tab.length; i++) {
+          $tab[i].addEventListener('click', changeTab);
+        }
       }
+
+      operate();
+
+      // 3번) 위의 탭 클릭시 아래의 컨텐츠중 탭과 숫자가 같은 것만 보이게 하시오.
+      /* 함수설계
+        [input] 탭과 숫자가 같은 것을 구분하게 하는 '탭1' 텍스트
+        [output] 2번에서 클릭된 탭과 같은 숫자 텍스트를 가진 탭만 보이고 나머지 탭들은 투명하게 함
+        1. 2번 탭의 텍스트와 3번 탭의 텍스트를 비교한다.
+        2. 두 개의 텍스트가 동일한 경우, 다른 탭들에 투명 css를 적용한다.
+        3. 2번의 모든 탭들에게 1&2번 기능이 적용되게 하는 함수 실행
+        */
+
+      const $block = document.querySelectorAll('.block');
+
+      function compareText(e) {
+        for (i = 0; i < $block.length; i++) {
+          const blockIndex = $block[i];
+          const blockText = $block[i].innerText;
+          const textArr = blockText.split(' ');
+          // console.log('텍스트', textArr); // (2) ['탭2', '컨텐츠']
+          if (e.target.innerText === textArr[0]) {
+            for (i = 0; i < $block.length; i++) {
+              $block[i].classList.add('transparent');
+            }
+            // } else {
+            //   $block[i].classList.add('transparent');
+          }
+          blockIndex.classList.remove('transparent');
+        }
+      }
+
+      function operate2() {
+        for (i = 0; i < $tab.length; i++) {
+          $tab[i].addEventListener('click', compareText);
+        }
+      }
+
+      operate2();
+
+      // 4번) 아래의 입력창에 숫자가 입력되지 않도록 하고 길이 제한은 10자로 하시오.
+      // 숫자가 입력된다면 숫자가 입력되었다고 alert로 알려주시오
+      const $input = document.getElementById('te_input');
+
+      function notNumber(e) {
+        const num_pattern = /^[0-9]+$/;
+        if (num_pattern.test($input.value)) {
+          alert('숫자가 입력되었습니다');
+          // e.value = e.value.substring(0, e.value.length - 1); // 숫자 지우기
+        }
+      }
+
+      // 5번) 아래의 입력창에 입력 후 저장 버튼을 누르거나 엔터키를 누르면 입력한 내용이 아래의 list에 추가 되도록 하시오.
+      // 초기화 버튼을 누르면 list안의 모든 내용이 지워져야 함.
+      /* 함수설계
+      [input] 입력한 값(저장하는 변수 필요), 입력값을 담는 list(공간 필요)
+      [output] 값을 입력하고 [저장] 클릭하면 리스트에 입력값이 보여짐 + 초기화를 누르면 list의 값들 모두 삭제
+      1. [저장] 버튼을 클릭하면 입력값이 input창에서 사라지고 list에 추가되게 한다
+      2. 초기화를 누르면 리스트의 모든 내용이 사라진다
+      */
+
+      const $form = document.querySelector('#form');
+      const $input2 = document.getElementById('list_data');
+      const $saveBtn = document.getElementById('send');
+      const $resetBtn = document.querySelector('#reset');
+      const $ul = document.querySelector('#list');
+      const $li = document.querySelector('.liclass');
+      const editBtn = '<button type="button" onClick="onEdit(this)">수정</button>';
+
+      function addBtn(node, text) {
+        const editBtn = '<button type="button" onClick="onEdit(this)">수정</button>';
+        const delBtn = '<button type="button" onClick ="onRemove(this)">삭제</button>';
+        node.innerHTML = text + editBtn + delBtn;
+      }
+
+      // 5번 저장
+      function save(e) {
+        // e.preventDefault();  => form 태의 submit 이벤트 속성일 경우 사용
+        const li = document.createElement('li');
+        const $inputValue = $input2.value;
+        addBtn(li, $inputValue);
+        $ul.append(li);
+      }
+
+      function saveOperate3() {
+        $saveBtn.addEventListener('click', save);
+      }
+
+      saveOperate3();
+
+      // 5번 초기화
+      function reset() {
+        $ul.innerHTML = '';
+      }
+
+      function resetOperate4() {
+        $resetBtn.addEventListener('click', reset);
+      }
+
+      resetOperate4();
+
+      // 6번 수정
+      function modify(e) {
+        const parentList = e.parentNode; // button 태그
+        const parentText = e.parentNode.childNodes[0]; // li 태그의 글자
+
+        console.log(parentText);
+        parentList.innerHTML = `<input value="${parentText.data}"/>
+                <button type="button" onclick="onSave(this)">저장</button>`;
+      }
+
+      function modifyOperate5() {
+        editBtn.addEventListener('click', modify);
+      }
+
+      modifyOperate5();
+
+      // 6번 저장
+      function finalSave(e) {
+        const parentList = e.parentNode;
+        const editTextValue = parentList.children[0].value;
+        addBtn(parentList, editTextValue);
+      }
+
+      // 6번 삭제
+      function onRemove(e) {
+        const parentNode = e.parentNode;
+        parentNode.remove(); // 부모요소 가져와서 부모요소 지워
+      }
+
+      $form.addEventListener('submit', save);
     </script>
   </body>
 </html>
