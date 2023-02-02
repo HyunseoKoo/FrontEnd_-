@@ -21,6 +21,8 @@ const musicListData = [
 const $imgUl = document.getElementsByTagName('ul')[0];
 $imgUl.innerHTML = `<li class = imgLi><img src="${musicListData[0].src}"></li><li class= ImgLi><img src='${musicListData[1].src}'></li><li class= ImgLi><img src='${musicListData[2].src}'></li>`;
 
+//
+
 /*
  2. .list_btn_group > button:first-child
     .list_btn_group > button:last-child
