@@ -21,8 +21,6 @@ const musicListData = [
 const $imgUl = document.getElementsByTagName('ul')[0];
 $imgUl.innerHTML = `<li class = imgLi><img src="${musicListData[0].src}"></li><li class= ImgLi><img src='${musicListData[1].src}'></li><li class= ImgLi><img src='${musicListData[2].src}'></li>`;
 
-//
-
 /*
  2. .list_btn_group > button:first-child
     .list_btn_group > button:last-child
@@ -45,72 +43,7 @@ const $diskInner = document.querySelector('.disk_inner'); // <div class="disck_i
 const $backgroundColor = document.getElementsByTagName('main')[0]; // main
 let playstatus = 0;
 
-function prevImgPoint() {
-  // 2번
-  if (currentPlayIndex <= 0) {
-    currentPlayIndex = $imgList.length - 1;
-    // console.log('0보다 작을 때', currentPlayIndex);
-  } else {
-    currentPlayIndex--;
-    // console.log(currentPlayIndex);
-  }
-
-  for (let item of $imgList) {
-    item.classList.remove('play');
-  }
-  $imgList[currentPlayIndex].classList.add('play');
-  // 3번
-  if (currentPlayIndex == 0) {
-    $diskInner.style.backgroundColor = musicListData[0].color[0];
-  } else if (currentPlayIndex == 1) {
-    $diskInner.style.backgroundColor = musicListData[1].color[0];
-  } else if (currentPlayIndex == 2) {
-    $diskInner.style.backgroundColor = musicListData[2].color[0];
-  }
-  // 4번
-  if (currentPlayIndex == 0) {
-    $backgroundColor.style.backgroundImage = `linear-gradient(120deg, ${musicListData[0].color[0]}, ${musicListData[0].color[1]})`;
-  } else if (currentPlayIndex == 1) {
-    $backgroundColor.style.backgroundImage = `linear-gradient(120deg, ${musicListData[1].color[0]}, ${musicListData[1].color[1]})`;
-  } else if (currentPlayIndex == 2) {
-    $backgroundColor.style.backgroundImage = `linear-gradient(120deg, ${musicListData[2].color[0]}, ${musicListData[2].color[1]})`;
-  }
-  $disk.classList.remove('active');
-}
-$PrevBtn1.addEventListener('click', prevImgPoint);
-
-function nextImgPoint() {
-  // 2번
-  if ($imgList.length - 1 <= currentPlayIndex) {
-    currentPlayIndex = 0;
-  } else {
-    currentPlayIndex++;
-  }
-  for (let item of $imgList) {
-    item.classList.remove('play');
-  }
-  $imgList[currentPlayIndex].classList.add('play');
-  // 3번
-  if (currentPlayIndex == 0) {
-    $diskInner.style.backgroundColor = musicListData[0].color[0];
-  } else if (currentPlayIndex == 1) {
-    $diskInner.style.backgroundColor = musicListData[1].color[0];
-  } else if (currentPlayIndex == 2) {
-    $diskInner.style.backgroundColor = musicListData[2].color[0];
-  }
-  // 4번
-  if (currentPlayIndex == 0) {
-    $backgroundColor.style.backgroundImage = `linear-gradient(120deg, ${musicListData[0].color[0]}, ${musicListData[0].color[1]})`;
-  } else if (currentPlayIndex == 1) {
-    $backgroundColor.style.backgroundImage = `linear-gradient(120deg, ${musicListData[1].color[0]}, ${musicListData[1].color[1]})`;
-  } else if (currentPlayIndex == 2) {
-    $backgroundColor.style.backgroundImage = `linear-gradient(120deg, ${musicListData[2].color[0]}, ${musicListData[2].color[1]})`;
-  }
-  $disk.classList.remove('active');
-}
-$NextBtn2.addEventListener('click', nextImgPoint);
-/*
- 5. .disk
+/* 5. .disk
     애니메이션을 추가해야할 disk 태그 */
 const $disk = document.querySelector('.disk'); // div.disk
 
@@ -121,41 +54,6 @@ const $playBtnGroup = document.querySelector('.play_btn_group');
 const $playBtn = document.querySelector('.play_btn_group > button:first-child'); // button
 const $stopBtn = document.querySelector('.play_btn_group > button:last-child'); // button
 
-function changeBackground() {
-  //   if (currentPlayIndex <= 0) {
-  //     console.log('0보다 작을 때', currentPlayIndex);
-  //   } else {
-  //     console.log(currentPlayIndex);
-  //   }
-  if (currentPlayIndex == 0) {
-    $backgroundColor.style.backgroundImage = `url(${musicListData[0].src})`;
-    $backgroundColor.style.backgroundRepeat = 'no-repeat';
-    $backgroundColor.style.backgroundSize = 'cover';
-  } else if (currentPlayIndex == 1) {
-    $backgroundColor.style.backgroundImage = `url(${musicListData[1].src})`;
-    $backgroundColor.style.backgroundRepeat = 'no-repeat';
-    $backgroundColor.style.backgroundSize = 'cover';
-  } else if (currentPlayIndex == 2) {
-    $backgroundColor.style.backgroundImage = `url(${musicListData[2].src})`;
-    $backgroundColor.style.backgroundRepeat = 'no-repeat';
-    $backgroundColor.style.backgroundSize = 'cover';
-  }
-  $disk.classList.add('active');
-}
-$playBtn.addEventListener('click', changeBackground);
-
-function resetBackground() {
-  if (currentPlayIndex == 0) {
-    $backgroundColor.style.backgroundImage = `linear-gradient(120deg, ${musicListData[0].color[0]}, ${musicListData[0].color[1]})`;
-  } else if (currentPlayIndex == 1) {
-    $backgroundColor.style.backgroundImage = `linear-gradient(120deg, ${musicListData[1].color[0]}, ${musicListData[1].color[1]})`;
-  } else if (currentPlayIndex == 2) {
-    $backgroundColor.style.backgroundImage = `linear-gradient(120deg, ${musicListData[2].color[0]}, ${musicListData[2].color[1]})`;
-  }
-  $disk.classList.remove('active');
-}
-$stopBtn.addEventListener('click', resetBackground);
-
 /*
  7. 생성된 ul의 li의 이미지태그를 가지고 올 것입니다.
  
@@ -163,31 +61,129 @@ $stopBtn.addEventListener('click', resetBackground);
       흰색 테두리 + 크기 커짐
  
     + 이미지 눌렀을 때도 이동 가능 */
-const $imgLiGroup = document.querySelectorAll('ul > li');
-console.log($imgLiGroup);
+const $ImgGroup = document.querySelectorAll('.list_btn_group > ul > li'); // [li][/li],[li][/li],[li][/li]
+// console.log($ImgGroup)
 const $img1 = document.querySelectorAll('.list_btn_group > ul > li > img')[0]; // <img src='./assets/img/iu_0.jpg'>
 const $img2 = document.querySelectorAll('.list_btn_group > ul > li > img')[1]; // <img src='./assets/img/iu_1.jpg'>
 const $img3 = document.querySelectorAll('.list_btn_group > ul > li > img')[2]; // <img src='./assets/img/iu_1.jpg'>
 
-$imgLiGroup.forEach((el, index) => {
+$imgList[currentPlayIndex].classList.add('play');
+// 1. [<] 버튼 누르면 발생되는 이벤트 함수
+function prevImgPoint() {
+  // 2번) 이전 페이지로 넘어감 (index가 0이되면 마지막 index로 변경)
+  if (currentPlayIndex <= 0) {
+    currentPlayIndex = $imgList.length - 1;
+  } else {
+    currentPlayIndex--;
+  }
+
+  // 7번) 이전에 설정된 'play'속성 삭제 (해당 속성이 어느 index에 적용되어 있는지 모르는 상태이지 for문으로 전체 인덱스에 모두 적용)
+  for (let item of $imgList) {
+    item.classList.remove('play');
+  }
+  // 현재 index(crruentPlayIndex)에만 'play'속성 적용
+  $imgList[currentPlayIndex].classList.add('play');
+
+  // 3번) 디스크 내부 원 색상 변경
+  for (i = 0; i < musicListData.length; i++) {
+    if (currentPlayIndex == [i]) {
+      $diskInner.style.backgroundColor = musicListData[i].color[0];
+    }
+  }
+
+  // 4번) 배경색(그라데이션) 변경
+  for (i = 0; i < musicListData.length; i++) {
+    if (currentPlayIndex == [i]) {
+      $backgroundColor.style.backgroundImage = `linear-gradient(120deg, ${musicListData[i].color[0]}, ${musicListData[i].color[1]})`;
+    }
+  }
+  // +) play버튼 눌렀다가 [<] 버튼 클릭할 경우를 대비하여, 디스크 회전 기능 삭제
+  $disk.classList.remove('active');
+}
+// 실행1
+$PrevBtn1.addEventListener('click', prevImgPoint);
+
+// 2. [>] 버튼 누르면 발생되는 이벤트 함수
+function nextImgPoint() {
+  // 2번) 이미지 index 다음 index로 변경 (마지막 index는 처음 index로 변경)
+  if ($imgList.length - 1 <= currentPlayIndex) {
+    currentPlayIndex = 0;
+  } else {
+    currentPlayIndex++;
+  }
+  //  7번) 이전에 설정된 'play'속성 삭제 (해당 속성이 어느 index에 적용되어 있는지 모르는 상태이지 for문으로 전체 인덱스에 모두 적용)
+  for (let item of $imgList) {
+    item.classList.remove('play');
+  }
+  // 현재 index(crruentPlayIndex)에만 'play'속성 적용
+  $imgList[currentPlayIndex].classList.add('play');
+
+  // 3번) 디스크 내부 원 색상 변경
+  for (i = 0; i < musicListData.length; i++) {
+    if (currentPlayIndex == [i]) {
+      $diskInner.style.backgroundColor = musicListData[i].color[0];
+    }
+  }
+
+  // 4번) 배경색(그라데이션) 변경
+  for (i = 0; i < musicListData.length; i++) {
+    if (currentPlayIndex == [i]) {
+      $backgroundColor.style.backgroundImage = `linear-gradient(120deg, ${musicListData[i].color[0]}, ${musicListData[i].color[1]})`;
+    }
+  }
+
+  // +) play버튼 눌렀다가 [<] 버튼 클릭할 경우를 대비하여, 디스크 회전 기능 삭제
+  $disk.classList.remove('active');
+}
+// 실행2
+$NextBtn2.addEventListener('click', nextImgPoint);
+
+// 3. [PLAY] 버튼 클릭하면 발생하는 이벤트 함수
+function PlayBtnClick() {
+  for (i = 0; i < musicListData.length; i++) {
+    if (currentPlayIndex == i) {
+      $backgroundColor.style.backgroundImage = `url(${musicListData[i].src})`;
+      $backgroundColor.style.backgroundRepeat = 'no-repeat';
+      $backgroundColor.style.backgroundSize = 'cover';
+    }
+
+    $disk.classList.add('active');
+  }
+}
+// 실행3
+$playBtn.addEventListener('click', PlayBtnClick);
+
+// 4. [STOP] 버튼 클릭하면 발생하는 이벤트 함수
+// function resetBackground() {
+function StopBtnClick() {
+  for (i = 0; i < musicListData.length; i++) {
+    if (currentPlayIndex == i) {
+      $backgroundColor.style.backgroundImage = `linear-gradient(120deg, ${musicListData[i].color[0]}, ${musicListData[i].color[1]})`;
+    }
+
+    $disk.classList.remove('active');
+  }
+  $ImgGroup;
+}
+// 실행4
+$stopBtn.addEventListener('click', StopBtnClick);
+
+// 5. 이미지 클릭하면 배경색 & 디스크 이너 색상 변경
+
+$ImgGroup.forEach((el, index) => {
   el.onclick = (e) => {
-    console.log(index); // 0 1 2
-    console.log(e.target); // <img src='./assets/img/iu_0.jpg'> [클릭한 img]
-    if (e.target == $img1) {
-      $backgroundColor.style.backgroundImage = `url(${musicListData[0].src})`;
-      $backgroundColor.style.backgroundRepeat = 'no-repeat';
-      $backgroundColor.style.backgroundSize = 'cover';
-      $disk.classList.add('active');
-    } else if (e.target == $img2) {
-      $backgroundColor.style.backgroundImage = `url(${musicListData[1].src})`;
-      $backgroundColor.style.backgroundRepeat = 'no-repeat';
-      $backgroundColor.style.backgroundSize = 'cover';
-      $disk.classList.add('active');
-    } else if (e.target == $img3) {
-      $backgroundColor.style.backgroundImage = `url(${musicListData[2].src})`;
-      $backgroundColor.style.backgroundRepeat = 'no-repeat';
-      $backgroundColor.style.backgroundSize = 'cover';
-      $disk.classList.add('active');
+    currentPlayIndex = [...el.parentElement.children].findIndex((item) => {
+      return item == e.target.parentElement;
+    });
+    // console.log([...el.parentElement.children.children]);
+
+    for (let el of $ImgGroup) {
+      el.children[0].classList.remove('play');
+      if (e.target == el.children[0]) {
+        $backgroundColor.style.backgroundImage = `linear-gradient(120deg, ${musicListData[currentPlayIndex].color[0]}, ${musicListData[currentPlayIndex].color[1]})`;
+        $diskInner.style.backgroundColor = musicListData[currentPlayIndex].color[0];
+        e.target.classList.add('play');
+      }
     }
   };
 });
