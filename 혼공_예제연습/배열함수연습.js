@@ -112,3 +112,30 @@ for (i = 0; i < hero.length; i++) {
 console.log(newArr);
 let ageReduce = newArr.reduce((el1, el2) => el1 + el2);
 console.log(ageReduce);
+
+//////////////////////////////////////////////////////////
+
+const todoList = [
+  {
+    id: 1,
+    title: 'title1',
+    content: 'content1',
+    state: false,
+  },
+];
+
+const handleUpdateTodo = (id, content, state) => {
+  const newTodoList = [...todoList];
+
+  console.log(newTodoList); // [ { id: 1, title: 'title1', content: 'content1', state: false } ]
+  const todo = newTodoList.find((todo) => todo.id === id);
+
+  // todo.content = content;
+  // todo.state = state;
+};
+// console.log(handleUpdateTodo(2, 'content2', 'state2'));
+
+todoList.map((item) => {
+  return (todo = { item }); // [리액트]에서 todo는 키, {item}은 값
+});
+console.log(todoList); // [{ id: 1, title: 'title1', content: 'content1', state: false }];
